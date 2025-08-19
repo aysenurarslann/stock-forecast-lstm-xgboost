@@ -1,4 +1,4 @@
-# 📈 Apple (AAPL) Hisse Senedi Fiyat Tahmini Projesi
+#  Apple (AAPL) Hisse Senedi Fiyat Tahmini Projesi
 
 Bu proje, **Apple Inc. (AAPL)** hisse senedi kapanış fiyatlarını tahmin etmek için **LSTM (Derin Öğrenme)** ve **XGBoost (Makine Öğrenmesi)** modellerini kullanır. Amacımız, geçmiş fiyat hareketlerine dayanarak gelecekteki fiyatları tahmin etmek ve modellerin performansını karşılaştırmaktır.
 
@@ -11,7 +11,7 @@ Bu proje, **Apple Inc. (AAPL)** hisse senedi kapanış fiyatlarını tahmin etme
 
 ---
 
-## 📊 Veri Kaynağı
+##  Veri Kaynağı
 - **Sembol**: `AAPL` (Apple Inc.)
 - **Kaynak**: Yahoo Finance (`yfinance`)
 - **Zaman Aralığı**: 2019-01-01 ile 2024-01-01
@@ -48,7 +48,7 @@ Bu proje, **Apple Inc. (AAPL)** hisse senedi kapanış fiyatlarını tahmin etme
 
 ---
 
-## 🔧 Teknik Detaylar
+##  Teknik Detaylar
 | Özellik | Değer |
 |--------|-------|
 | **Zaman Penceresi** | 60 gün |
@@ -60,7 +60,7 @@ Bu proje, **Apple Inc. (AAPL)** hisse senedi kapanış fiyatlarını tahmin etme
 
 ---
 
-## 📈 Veri Analizi ve Görselleştirme
+##  Veri Analizi ve Görselleştirme
 
 ### 1. Tarihsel Fiyat Grafiği (2019–2024)
 ![Apple Hisse Fiyatı (2019-2024)](apple_stock_price_2019_2024.png)
@@ -69,7 +69,7 @@ Bu proje, **Apple Inc. (AAPL)** hisse senedi kapanış fiyatlarını tahmin etme
 
 ---
 
-## 📊 Model Karşılaştırma Sonuçları
+##  Model Karşılaştırma Sonuçları
 
 ### 2. LSTM vs XGBoost Tahmin Karşılaştırması
 ![LSTM vs XGBoost Karşılaştırması](lstm_vs_xgboost_comparison.png)
@@ -83,38 +83,38 @@ Bu proje, **Apple Inc. (AAPL)** hisse senedi kapanış fiyatlarını tahmin etme
 
 ---
 
-## 📊 Performans Metrikleri
+##  Performans Metrikleri
 
 | Model      | MAE (Ortalama Mutlak Hata) | RMSE (Kök Ortalama Kare Hata) |
 |-----------|----------------------------|-------------------------------|
 | **LSTM**  | 4.65 USD                   | 5.56 USD                      |
 | **XGBoost** | 9.49 USD                 | 12.69 USD                     |
 
-### 🔍 Yorum:
+### Yorum:
 - **LSTM**, hem MAE hem de RMSE açısından **XGBoost’a göre yaklaşık iki kat daha iyi** performans göstermiştir.
 - LSTM, zaman serilerindeki **uzun vadeli bağımlılıkları** (trend, momentum) öğrenebildiği için daha başarılı olmuştur.
 - XGBoost, **ham zaman penceresi verisiyle** çalıştığı için sıralı yapıyı tam olarak kavrayamamıştır.
 
 ---
 
-## 🏆 Sonuç: Hangi Model Daha İyi?
+##  Sonuç: Hangi Model Daha İyi?
 
-✅ **LSTM**, bu proje için **daha başarılı model** olmuştur.
+ **LSTM**, bu proje için **daha başarılı model** olmuştur.
 
-> 🔎 **Neden?**
+>  **Neden?**
 > - Zaman serisi tahmini, geçmiş değerlerin sıralı ilişkisini anlamayı gerektirir.
 > - LSTM, bu ilişkileri iç hafızasıyla modelleyebilir.
 > - XGBoost ise her örneği bağımsız bir vektör olarak görür; bu yüzden zaman bağımlılığını doğrudan öğrenemez.
 
 ---
 
-## 📊 Eğitim Süreci (LSTM)
+##  Eğitim Süreci (LSTM)
 
 ### Loss Eğitimi (Epoch Bazlı)
 Epoch 1/20 - loss: 0.2023 - val_loss: 0.0513
 Epoch 20/20 - loss: 0.0008 - val_loss: 0.0012
-# 📈 Apple (AAPL) Hisse Senedi Fiyat Tahmini Projesi
-## 📈 Veri Analizi ve Görselleştirme
+#  Apple (AAPL) Hisse Senedi Fiyat Tahmini Projesi
+##  Veri Analizi ve Görselleştirme
 
 ### 1. Tarihsel Fiyat Grafiği (2019–2024)
 ![Apple Hisse Fiyatı (2019-2024)](apple_stock_price_2019_2024.png)
@@ -123,7 +123,7 @@ Epoch 20/20 - loss: 0.0008 - val_loss: 0.0012
 
 ---
 
-## 📊 Model Karşılaştırma Sonuçları
+##  Model Karşılaştırma Sonuçları
 
 ### 2. LSTM vs XGBoost Tahmin Karşılaştırması
 ![LSTM vs XGBoost Karşılaştırması](lstm_vs_xgboost_comparison.png)
@@ -137,14 +137,14 @@ Epoch 20/20 - loss: 0.0008 - val_loss: 0.0012
 
 ---
 
-## 📊 Performans Metrikleri
+##  Performans Metrikleri
 
 | Model      | MAE (Ortalama Mutlak Hata) | RMSE (Kök Ortalama Kare Hata) |
 |-----------|----------------------------|-------------------------------|
 | **LSTM**  | 4.65 USD                   | 5.56 USD                      |
 | **XGBoost** | 9.49 USD                 | 12.69 USD                     |
 
-### 🔍 Yorum:
+###  Yorum:
 - **LSTM**, hem MAE hem de RMSE açısından **XGBoost’a göre yaklaşık iki kat daha iyi** performans göstermiştir.
 - LSTM, zaman serilerindeki **uzun vadeli bağımlılıkları** (trend, momentum) öğrenebildiği için daha başarılı olmuştur.
 - XGBoost, **ham zaman penceresi verisiyle** çalıştığı için sıralı yapıyı tam olarak kavrayamamıştır.
@@ -153,9 +153,9 @@ Epoch 20/20 - loss: 0.0008 - val_loss: 0.0012
 
 ## 🏆 Sonuç: Hangi Model Daha İyi?
 
-✅ **LSTM**, bu proje için **daha başarılı model** olmuştur.
+ **LSTM**, bu proje için **daha başarılı model** olmuştur.
 
-> 🔎 **Neden?**
+>  **Neden?**
 > - Zaman serisi tahmini, geçmiş değerlerin sıralı ilişkisini anlamayı gerektirir.
 > - LSTM, bu ilişkileri iç hafızasıyla modelleyebilir.
 > - XGBoost ise her örneği bağımsız bir vektör olarak görür; bu yüzden zaman bağımlılığını doğrudan öğrenemez.
@@ -173,11 +173,11 @@ Epoch 20/20 - loss: 0.0008 - val_loss: 0.0012
 
 ---
 
-## 🚫 Uyarı: Bu bir yatırım tavsiyesi değildir
+##  Bu bir yatırım tavsiyesi değildir
 
-> ⚠️ Bu proje **tamamen eğitim amaçlıdır**.  
+>  Bu proje **tamamen eğitim amaçlıdır**.  
 > Hisse senedi fiyatları, şirket haberleri, ekonomik veriler, piyasa duygusu gibi çok sayıda faktöre bağlıdır. Bu model sadece geçmiş fiyat hareketlerini analiz eder.  
 > 
-> 📌 **Gerçek yatırım kararları için bu model kullanılmamalıdır.**
+
 
 ---
