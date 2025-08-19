@@ -111,77 +111,8 @@ Bu proje, **Apple Inc. (AAPL)** hisse senedi kapanış fiyatlarını tahmin etme
 ## 📊 Eğitim Süreci (LSTM)
 
 ### Loss Eğitimi (Epoch Bazlı)
-profile
-Qwen3-235B-A22B-2507
-5:05 pm
-Elbette! Aşağıda, senin paylaştığın kod ve çıktılara göre hazırlanmış, görselleri içerecek şekilde tasarlanmış, detaylı ve profesyonel bir README.md dosyası bulacaksın. Bu README, hem teknik hem de görsel açıdan eksiksizdir ve projenin tüm yönlerini yansıtır.
-
-markdown
-
-
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113
-⌄
-⌄
-⌄
-⌄
-⌄
-⌄
-⌄
-⌄
-⌄
-⌄
-⌄
-⌄
+Epoch 1/20 - loss: 0.2023 - val_loss: 0.0513
+Epoch 20/20 - loss: 0.0008 - val_loss: 0.0012
 # 📈 Apple (AAPL) Hisse Senedi Fiyat Tahmini Projesi
 ## 📈 Veri Analizi ve Görselleştirme
 
