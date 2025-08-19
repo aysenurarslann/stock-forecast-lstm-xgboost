@@ -1,183 +1,128 @@
-#  Apple (AAPL) Hisse Senedi Fiyat Tahmini Projesi
+#  Apple (AAPL) Stock Price Forecasting Project
 
-Bu proje, **Apple Inc. (AAPL)** hisse senedi kapanış fiyatlarını tahmin etmek için **LSTM (Derin Öğrenme)** ve **XGBoost (Makine Öğrenmesi)** modellerini kullanır. Amacımız, geçmiş fiyat hareketlerine dayanarak gelecekteki fiyatları tahmin etmek ve modellerin performansını karşılaştırmaktır.
-
----
-
-## 🎯 Amaç
-- Geçmiş 60 günün kapanış fiyatını kullanarak bir sonraki günün fiyatı tahmin edilir.
-- LSTM ve XGBoost modellerinin performansı karşılaştırılır.
-- Zaman serisi tahmini için en uygun model belirlenir.
+This project uses **LSTM (Deep Learning)** and **XGBoost (Machine Learning)** models to predict the closing prices of **Apple Inc. (AAPL)**. Our goal is to forecast future prices based on historical data and compare the performance of both models.
 
 ---
 
-##  Veri Kaynağı
-- **Sembol**: `AAPL` (Apple Inc.)
-- **Kaynak**: Yahoo Finance (`yfinance`)
-- **Zaman Aralığı**: 2019-01-01 ile 2024-01-01
-- **Frekans**: Günlük
-- **Kullanılan Sütun**: `Close` (Kapanış Fiyatı)
-- **Toplam Veri Noktası**: ~1,257 gün
-- **Normalizasyon**: `MinMaxScaler` (0–1 arası)
+## Objective
+- Predict the next day’s closing price using the past 60 days of historical prices.
+- Compare the performance of LSTM and XGBoost models.
+- Determine the most suitable model for time series forecasting.
 
 ---
 
-## 🧠 Kullanılan Modeller
+##  Data Source
+- **Symbol**: `AAPL` (Apple Inc.)
+- **Source**: Yahoo Finance (`yfinance`)
+- **Time Period**: January 1, 2019 – January 1, 2024
+- **Frequency**: Daily
+- **Column Used**: `Close` (Closing Price)
+- **Total Data Points**: ~1,257 days
+- **Normalization**: `MinMaxScaler` (scaled to 0–1 range)
+
+---
+
+##  Models Used
 
 ### 1. **LSTM (Long Short-Term Memory)**
-- **Tür**: Derin öğrenme, RNN tabanlı
-- **Katmanlar**:
-  - LSTM (50 nöron, `return_sequences=True`)
-  - LSTM (50 nöron, `return_sequences=False`)
-  - Dense (25 nöron, ReLU aktivasyonu)
-  - Dense (1 çıkış, fiyat tahmini)
-- **Optimizatör**: Adam (learning_rate=0.001)
+- **Type**: Deep Learning, RNN-based
+- **Layers**:
+  - LSTM (50 units, `return_sequences=True`)
+  - LSTM (50 units, `return_sequences=False`)
+  - Dense (25 units, ReLU activation)
+  - Dense (1 output, price prediction)
+- **Optimizer**: Adam (learning_rate=0.001)
 - **Loss Function**: Mean Squared Error (MSE)
 - **Epochs**: 20
 - **Batch Size**: 32
-- **Giriş Şekli**: `(batch_size, 60, 1)` → 60 gün geçmiş, 1 özellik
+- **Input Shape**: `(batch_size, 60, 1)` → 60 days of history, 1 feature
 
 ### 2. **XGBoost (Extreme Gradient Boosting)**
-- **Tür**: Ağaç tabanlı makine öğrenmesi
-- **Parametreler**:
+- **Type**: Tree-based Machine Learning
+- **Parameters**:
   - `n_estimators=100`
   - `max_depth=6`
   - `learning_rate=0.1`
   - `random_state=42`
-- **Giriş Şekli**: 2D dizi → `(batch_size, 60)`
+- **Input Shape**: 2D array → `(batch_size, 60)`
 
 ---
 
-##  Teknik Detaylar
-| Özellik | Değer |
+##  Technical Details
+| Feature | Value |
 |--------|-------|
-| **Zaman Penceresi** | 60 gün |
-| **Eğitim/Test Oranı** | %80 / %20 |
-| **Test Örnek Sayısı** | 240 gün |
-| **Normalizasyon** | MinMaxScaler (0–1) |
-| **Metrikler** | MAE, RMSE |
-| **Kütüphaneler** | `yfinance`, `pandas`, `numpy`, `matplotlib`, `scikit-learn`, `tensorflow`, `xgboost` |
+| **Sequence Length** | 60 days |
+| **Train/Test Split** | 80% / 20% |
+| **Test Samples** | 240 days |
+| **Normalization** | MinMaxScaler (0–1) |
+| **Evaluation Metrics** | MAE, RMSE |
+| **Libraries** | `yfinance`, `pandas`, `numpy`, `matplotlib`, `scikit-learn`, `tensorflow`, `xgboost` |
 
 ---
 
-##  Veri Analizi ve Görselleştirme
+## Data Analysis and Visualization
 
-### 1. Tarihsel Fiyat Grafiği (2019–2024)
-![Apple Hisse Fiyatı (2019-2024)](apple_stock_price_2019_2024.png)
+### 1. Historical Price Chart (2019–2024)
+![Apple Stock Price (2019-2024)](apple_stock_price_2019_2024.png)
 
-> 📌 **Açıklama**: Apple hisse fiyatı 2019’da yaklaşık **34 USD** seviyesinden başlayıp 2024’e kadar **196 USD**’ye kadar çıktı. Bu dönemde şirketin ürün lansmanları, piyasa büyümesi ve makroekonomik faktörler fiyat üzerinde etkili oldu.
+> 📌 **Description**: Apple stock price started around **$34** in 2019 and rose to **$196** by 2024. Product launches, market growth, and macroeconomic factors significantly influenced the price during this period.
 
 ---
 
-##  Model Karşılaştırma Sonuçları
+##  Model Comparison Results
 
-### 2. LSTM vs XGBoost Tahmin Karşılaştırması
-![LSTM vs XGBoost Karşılaştırması](lstm_vs_xgboost_comparison.png)
+### 2. LSTM vs XGBoost Prediction Comparison
+![LSTM vs XGBoost Comparison](lstm_vs_xgboost_comparison.png)
 
-> 📌 **Grafik Açıklaması**:
-> - **Siyah çizgi**: Gerçek kapanış fiyatı
-> - **Kırmızı kesikli çizgi**: LSTM tahmini
-> - **Mavi noktalı çizgi**: XGBoost tahmini
+> 📌 **Graph Description**:
+> - **Black line**: Actual closing price
+> - **Red dashed line**: LSTM prediction
+> - **Blue dotted line**: XGBoost prediction
 >
-> LSTM, genel trendi daha iyi takip ederken, XGBoost ani hareketlere daha az duyarlı kalmıştır.
+> LSTM better captures the overall trend, while XGBoost is less responsive to sudden price movements.
 
 ---
 
-##  Performans Metrikleri
+## Performance Metrics
 
-| Model      | MAE (Ortalama Mutlak Hata) | RMSE (Kök Ortalama Kare Hata) |
+| Model      | MAE (Mean Absolute Error) | RMSE (Root Mean Squared Error) |
 |-----------|----------------------------|-------------------------------|
 | **LSTM**  | 4.65 USD                   | 5.56 USD                      |
 | **XGBoost** | 9.49 USD                 | 12.69 USD                     |
 
-### Yorum:
-- **LSTM**, hem MAE hem de RMSE açısından **XGBoost’a göre yaklaşık iki kat daha iyi** performans göstermiştir.
-- LSTM, zaman serilerindeki **uzun vadeli bağımlılıkları** (trend, momentum) öğrenebildiği için daha başarılı olmuştur.
-- XGBoost, **ham zaman penceresi verisiyle** çalıştığı için sıralı yapıyı tam olarak kavrayamamıştır.
+###  Interpretation:
+- **LSTM** outperforms XGBoost by **nearly a factor of two** in both MAE and RMSE.
+- LSTM successfully learns **long-term dependencies** (trends, momentum) in time series data.
+- XGBoost, trained on raw windowed data, fails to fully capture the sequential nature of the time series.
 
 ---
 
-##  Sonuç: Hangi Model Daha İyi?
+##  Conclusion: Which Model is Better?
 
- **LSTM**, bu proje için **daha başarılı model** olmuştur.
+ **LSTM** is the **superior model** for this forecasting task.
 
->  **Neden?**
-> - Zaman serisi tahmini, geçmiş değerlerin sıralı ilişkisini anlamayı gerektirir.
-> - LSTM, bu ilişkileri iç hafızasıyla modelleyebilir.
-> - XGBoost ise her örneği bağımsız bir vektör olarak görür; bu yüzden zaman bağımlılığını doğrudan öğrenemez.
-
----
-
-##  Eğitim Süreci (LSTM)
-
-### Loss Eğitimi (Epoch Bazlı)
-Epoch 1/20 - loss: 0.2023 - val_loss: 0.0513
-Epoch 20/20 - loss: 0.0008 - val_loss: 0.0012
-#  Apple (AAPL) Hisse Senedi Fiyat Tahmini Projesi
-##  Veri Analizi ve Görselleştirme
-
-### 1. Tarihsel Fiyat Grafiği (2019–2024)
-![Apple Hisse Fiyatı (2019-2024)](apple_stock_price_2019_2024.png)
-
-> 📌 **Açıklama**: Apple hisse fiyatı 2019’da yaklaşık **34 USD** seviyesinden başlayıp 2024’e kadar **196 USD**’ye kadar çıktı. Bu dönemde şirketin ürün lansmanları, piyasa büyümesi ve makroekonomik faktörler fiyat üzerinde etkili oldu.
+>  **Why?**
+> - Time series forecasting requires understanding of sequential patterns and temporal dependencies.
+> - LSTM can model these dependencies through its internal memory cells.
+> - XGBoost treats each input window as an independent vector and cannot inherently learn time-based relationships.
 
 ---
 
-##  Model Karşılaştırma Sonuçları
-
-### 2. LSTM vs XGBoost Tahmin Karşılaştırması
-![LSTM vs XGBoost Karşılaştırması](lstm_vs_xgboost_comparison.png)
-
-> 📌 **Grafik Açıklaması**:
-> - **Siyah çizgi**: Gerçek kapanış fiyatı
-> - **Kırmızı kesikli çizgi**: LSTM tahmini
-> - **Mavi noktalı çizgi**: XGBoost tahmini
->
-> LSTM, genel trendi daha iyi takip ederken, XGBoost ani hareketlere daha az duyarlı kalmıştır.
-
----
-
-##  Performans Metrikleri
-
-| Model      | MAE (Ortalama Mutlak Hata) | RMSE (Kök Ortalama Kare Hata) |
-|-----------|----------------------------|-------------------------------|
-| **LSTM**  | 4.65 USD                   | 5.56 USD                      |
-| **XGBoost** | 9.49 USD                 | 12.69 USD                     |
-
-###  Yorum:
-- **LSTM**, hem MAE hem de RMSE açısından **XGBoost’a göre yaklaşık iki kat daha iyi** performans göstermiştir.
-- LSTM, zaman serilerindeki **uzun vadeli bağımlılıkları** (trend, momentum) öğrenebildiği için daha başarılı olmuştur.
-- XGBoost, **ham zaman penceresi verisiyle** çalıştığı için sıralı yapıyı tam olarak kavrayamamıştır.
-
----
-
-## 🏆 Sonuç: Hangi Model Daha İyi?
-
- **LSTM**, bu proje için **daha başarılı model** olmuştur.
-
->  **Neden?**
-> - Zaman serisi tahmini, geçmiş değerlerin sıralı ilişkisini anlamayı gerektirir.
-> - LSTM, bu ilişkileri iç hafızasıyla modelleyebilir.
-> - XGBoost ise her örneği bağımsız bir vektör olarak görür; bu yüzden zaman bağımlılığını doğrudan öğrenemez.
-
----
-
-## 📊 Eğitim Süreci (LSTM)
-
-### Loss Eğitimi (Epoch Bazlı)
+##  Training Process (LSTM)
+### Loss Over Epochs
 Epoch 1/20 - loss: 0.2023 - val_loss: 0.0513
 Epoch 20/20 - loss: 0.0008 - val_loss: 0.0012
 
-- Eğitim kaybı (loss) düzenli olarak düşüyor.
-- Validation loss (val_loss) 0.0012’ye kadar düştü → **iyi genelleme**, aşırı öğrenme (overfit) yok.
+
+
+- Training loss decreases steadily.
+- Validation loss drops to 0.0012 → indicates **good generalization** with **no overfitting**.
 
 ---
 
-##  Bu bir yatırım tavsiyesi değildir
+##  Not Financial Advice
 
->  Bu proje **tamamen eğitim amaçlıdır**.  
-> Hisse senedi fiyatları, şirket haberleri, ekonomik veriler, piyasa duygusu gibi çok sayıda faktöre bağlıdır. Bu model sadece geçmiş fiyat hareketlerini analiz eder.  
+>  This project is **purely educational**.  
+> Stock prices are influenced by company news, economic data, market sentiment, and global events. This model only analyzes historical price movements.  
 > 
-
-
----
+> 📌 **Do not use this model for real-world investment decisions.**
